@@ -1,0 +1,1 @@
+class_name EditorHeightGenNode extends Node3D
