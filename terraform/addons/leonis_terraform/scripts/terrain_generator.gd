@@ -210,7 +210,7 @@ func _config_lod_0():
 	_terrain_lod_0 = MeshInstance3D.new()
 	_terrain_lod_0.name = "TerrainCellLOD0"
 	
-	_terrain_lod_0.visibility_range_end = cell_size/2 + 128
+	_terrain_lod_0.visibility_range_end = cell_size/2 + cell_size/4
 	_terrain_lod_0.mesh = _terrain_lod_0_mesh
 	_terrain_lod_0.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED
 	if enable_collision:
@@ -221,7 +221,7 @@ func _config_lod_0():
 func _config_lod_1():
 	_terrain_lod_1 = MeshInstance3D.new()
 	_terrain_lod_1.name = "TerrainCellLOD1"
-	_terrain_lod_1.visibility_range_begin = cell_size/2 + 128
+	_terrain_lod_1.visibility_range_begin = cell_size/2 + cell_size/4
 	_terrain_lod_1.visibility_range_end = cell_size * 2
 	_terrain_lod_1.mesh = _terrain_lod_1_mesh
 	_terrain_lod_1.material_override = _terrain_material
