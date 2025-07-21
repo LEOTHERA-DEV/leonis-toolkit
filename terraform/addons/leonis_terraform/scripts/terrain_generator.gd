@@ -52,7 +52,7 @@ func _ready():
 		generate_terrain_mesh()
 
 func _createBlankImage():
-	var _img = Image.new().create(256, 256, false, Image.FORMAT_RGBA8)
+	var _img = Image.new().create(cell_size/4, cell_size/4, false, Image.FORMAT_RGBA8)
 	_img.fill(Color.BLACK)
 	return _img
 
