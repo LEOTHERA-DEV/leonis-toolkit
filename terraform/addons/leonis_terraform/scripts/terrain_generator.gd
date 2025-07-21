@@ -166,10 +166,6 @@ func _generate_lod_mesh(verts : int, height_map_tex : Texture2D) -> ArrayMesh:
 				clamp(int(uv.x * img_coords.x), 0.0, img_coords.x), 
 				clamp(int(uv.y * img_coords.y), 0.0, img_coords.y)
 			)
-			if z == verts:
-				pix_coords.y = img_coords.y - 0.5
-			if x == verts:
-				pix_coords.x = img_coords.x - 0.5
 			var y = original_img.get_pixel(pix_coords.x, pix_coords.y).r * max_height * 4
 			surf.set_uv(uv)
 			surf.add_vertex(Vector3(x * (cell_size / verts), y, z * (cell_size / verts)))
