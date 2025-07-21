@@ -150,6 +150,7 @@ func _generate_lod_mesh(verts : int, height_map_tex : Texture2D) -> ArrayMesh:
 	var arr_mesh : ArrayMesh = ArrayMesh.new()
 	var surf = SurfaceTool.new()
 	var original_img = height_map_tex.get_image()
+	var final_y_coord
 	surf.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for z in range(verts + 1):
 		for x in range(verts + 1):
@@ -168,7 +169,12 @@ func _generate_lod_mesh(verts : int, height_map_tex : Texture2D) -> ArrayMesh:
 			)
 			var y = original_img.get_pixel(pix_coords.x, pix_coords.y).r * max_height * 4
 			surf.set_uv(uv)
-			surf.add_vertex(Vector3(x * (cell_size / verts), y, z * (cell_size / verts)))
+			var vert_vec3 = Vector3(
+				x * (cell_size / verts),
+				y,
+				z * (cell_size / verts)
+			)
+			surf.add_vertex(vert_vec3)
 	
 	for z in range(verts):
 		for x in range(verts):
