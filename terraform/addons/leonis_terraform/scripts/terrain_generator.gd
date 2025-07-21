@@ -263,7 +263,7 @@ func _configure_terrain_brush():
 	if _brush_decal == null:
 		_brush_decal = Decal.new()
 	_brush_decal.texture_albedo = preload("res://addons/leonis_terraform/resources/terrain_brush.png")
-	_brush_decal.modulate = Color(0.8, 0.8, 0.8, 0.3)
+	_brush_decal.modulate = Color(1, 1, 1, 0.8)
 	_brush_decal.size = Vector3(_brush_radius*10, 20, _brush_radius*10)
 	_brush_decal.name = "terrainBrush"
 
@@ -305,11 +305,11 @@ func _paint_texture(mouse_position:Vector3, erase_mode : bool, draw_mode : bool,
 	if draw_mode:
 		var _splatMaps = {0:splat_0, 1:splat_1, 2:splat_2}
 		var uv_coords = Vector2((mouse_position.x - position.x)/cell_size, (mouse_position.z - position.z)/cell_size)
-		var splat_coords = Vector2(uv_coords.x * 256, uv_coords.y * 256)
+		var splat_coords = Vector2(uv_coords.x * (cell_size/4), uv_coords.y * (cell_size/4))
 		var active_splat : splatResource = _splatMaps[_currentSplat]
 		var img = active_splat.splatMap.get_image()
 		var new_img = img.duplicate()
-		_brush_decal.modulate.a = 0.3
+		_brush_decal.modulate.a = 0.6
 		_selected_colour = Color.BLACK if erase_mode else _active_colour
 		
 		if _brush_radius == 1:
@@ -326,7 +326,7 @@ func _paint_texture(mouse_position:Vector3, erase_mode : bool, draw_mode : bool,
 		active_splat.splatMap = ImageTexture.new().create_from_image(new_img)
 		_updateSplatMaps()
 	else:
-		_brush_decal.modulate.a = 0.25
+		_brush_decal.modulate.a = 0.8
 	_brush_decal.visible = false if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED else true
 
 func _setCurrentChannel(new_channel:int):
