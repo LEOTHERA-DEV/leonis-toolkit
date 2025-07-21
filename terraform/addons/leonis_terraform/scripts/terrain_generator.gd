@@ -12,10 +12,8 @@ extends Node3D
 @export var enable_collision : bool = true
 var subdivision_steps : int
 
-@export_category("Texture Slots")
+@export_category("Terrain Textures")
 @export var splat_0 : splatResource
-@export var splat_1 : splatResource
-@export var splat_2 : splatResource
 
 @export_category("Object Scattering")
 @export var scatter_map : Texture2D
@@ -65,16 +63,8 @@ func generateScatterMap():
 func _handleSplatMaps():
 	if splat_0 == null:
 		splat_0 = splatResource.new()
-	if splat_1 == null:
-		splat_1 = splatResource.new()
-	if splat_2 == null:
-		splat_2 = splatResource.new()
 	if splat_0 != null && splat_0.splatMap == null:
 		generateSplatMap(splat_0)
-	if splat_1 != null && splat_1.splatMap == null:
-		generateSplatMap(splat_1)
-	if splat_2 != null && splat_2.splatMap == null:
-		generateSplatMap(splat_2)
 
 func generate_terrain_mesh():
 	subdivision_steps = cell_size/128
@@ -105,8 +95,6 @@ func _add_children():
 func _updateSplatMaps():
 	var _splats = {
 		"splat_0":splat_0.splatMap,
-		"splat_1":splat_1.splatMap,
-		"splat_2":splat_2.splatMap
 	}
 	for i in _splats:
 		_terrain_material.set_shader_parameter(i, _splats[i])
@@ -126,22 +114,12 @@ func _configure_material():
 		var _placeholder_texture = preload("res://addons/leonis_terraform/resources/tex_terrain_blank.png")
 		splat_0.zeroTexture = _placeholder_texture
 	var _node_shader_params = {
-		"splat_0":splat_0.splatMap, "splat_1":splat_1.splatMap, "splat_2":splat_2.splatMap,
+		"splat_0":splat_0.splatMap,
 #		------------------------------Splat_0 Textures------------------------------
 		"splat_0_0":splat_0.zeroTexture, 	"splat_0_0_uv":splat_0.zeroUv,
 		"splat_0_r":splat_0.redTexture, 	"splat_0_r_uv":splat_0.redUv,
 		"splat_0_g":splat_0.greenTexture, 	"splat_0_g_uv":splat_0.greenUv,
-		"splat_0_b":splat_0.blueTexture, 	"splat_0_b_uv":splat_0.blueUv,
-#		------------------------------Splat_1 Textures------------------------------
-		"splat_1_0":splat_1.zeroTexture, 	"splat_1_0_uv":splat_1.zeroUv,
-		"splat_1_r":splat_1.redTexture, 	"splat_1_r_uv":splat_1.redUv,
-		"splat_1_g":splat_1.greenTexture, 	"splat_1_g_uv":splat_1.greenUv,
-		"splat_1_b":splat_1.blueTexture, 	"splat_1_b_uv":splat_1.blueUv,
-#		------------------------------Splat_2 Textures------------------------------
-		"splat_2_0":splat_2.zeroTexture, 	"splat_2_0_uv":splat_2.zeroUv,
-		"splat_2_r":splat_2.redTexture, 	"splat_2_r_uv":splat_2.redUv,
-		"splat_2_g":splat_2.greenTexture, 	"splat_2_g_uv":splat_2.greenUv,
-		"splat_2_b":splat_2.blueTexture, 	"splat_2_b_uv":splat_2.blueUv,
+		"splat_0_b":splat_0.blueTexture, 	"splat_0_b_uv":splat_0.blueUv
 	}
 	for i in _node_shader_params:
 		_terrain_material.set_shader_parameter(i, _node_shader_params[i])
@@ -303,7 +281,7 @@ func _paint_texture(mouse_position:Vector3, erase_mode : bool, draw_mode : bool,
 	handleBrushPosition(_node_relative_position)
 	var _selected_colour : Color
 	if draw_mode:
-		var _splatMaps = {0:splat_0, 1:splat_1, 2:splat_2}
+		var _splatMaps = {0:splat_0}
 		var uv_coords = Vector2((mouse_position.x - position.x)/cell_size, (mouse_position.z - position.z)/cell_size)
 		var splat_coords = Vector2(uv_coords.x * (cell_size/4), uv_coords.y * (cell_size/4))
 		var active_splat : splatResource = _splatMaps[_currentSplat]
@@ -335,5 +313,5 @@ func _setCurrentChannel(new_channel:int):
 	_active_colour = _colourChannels[_currentChannel]
 
 func _setCurrentSplat(new_splat:int):
-	var _splatMaps = {0:splat_0, 1:splat_1, 2:splat_2}
+	var _splatMaps = {0:splat_0}
 	_currentSplat = new_splat
