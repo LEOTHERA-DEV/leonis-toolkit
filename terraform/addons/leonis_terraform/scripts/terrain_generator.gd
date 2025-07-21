@@ -6,7 +6,7 @@ extends Node3D
 
 @export_category("Terrain Configuration")
 @export var height_map_texture 	: Texture2D
-@export_range(512, 1024, 128) var cell_size : int = 1024
+@export_range(512, 2048, 128) var cell_size : int = 1024
 @export var max_height 		: float = 10
 @export var clear_stored_meshes	: bool
 @export var enable_collision : bool = true
