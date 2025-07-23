@@ -92,7 +92,9 @@ func _add_children():
 	add_child(_terrain_lod_1)
 	_terrain_lod_1.owner = self
 	add_child(_terrain_lod_2)
+	_terrain_lod_2.owner = self
 	add_child(_terrain_lod_3)
+	_terrain_lod_3.owner = self
 
 func _updateSplatMaps():
 	var _splats = {
