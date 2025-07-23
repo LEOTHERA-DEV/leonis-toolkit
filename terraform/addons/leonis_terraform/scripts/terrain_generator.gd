@@ -88,7 +88,9 @@ func _add_children():
 	var lod_0_root = StaticBody3D.new()
 	lod_0_root.add_child(_terrain_lod_0)
 	add_child(lod_0_root)
+	lod_0_root.owner = self
 	add_child(_terrain_lod_1)
+	_terrain_lod_1.owner = self
 	add_child(_terrain_lod_2)
 	add_child(_terrain_lod_3)
 
