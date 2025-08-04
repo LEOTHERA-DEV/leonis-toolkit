@@ -5,3 +5,4 @@ content
 *.godot
 *.uid
 *.editorconfig
+*pyc
