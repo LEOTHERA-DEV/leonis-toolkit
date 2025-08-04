@@ -3,3 +3,4 @@ _web
 content
 *.godot
 *.uid
+*.editorconfig
