@@ -1,5 +1,6 @@
 .godot
 _web
+__pycache__
 content
 *.godot
 *.uid
