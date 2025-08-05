@@ -52,19 +52,19 @@ char_main_tree.grid(column=0, row=0, rowspan=50)
 char_id_label = ttk.Label(character_frame, text="ID")
 char_id_label.grid(column=1, row=0, pady=2, sticky='e')
 char_id_entry = ttk.Entry(character_frame)
-char_id_entry.grid(column=2, row=0, columnspan=3, pady=2, sticky='we')
+char_id_entry.grid(column=2, row=0, columnspan=2, pady=2, sticky='we')
 
 char_name_label = ttk.Label(character_frame, text="Name")
 char_name_label.grid(column=1, row=1, pady=2, sticky='e')
 char_name_entry = ttk.Entry(character_frame)
-char_name_entry.grid(column=2, row=1, columnspan=3, pady=2, sticky='we')
+char_name_entry.grid(column=2, row=1, columnspan=2, pady=2, sticky='we')
 
 char_race_label = ttk.Label(character_frame, text="Race")
 char_race_label.grid(column=1, row=2, pady=2, sticky='e')
 char_race_dropdown = ttk.Combobox(character_frame, values=['Test'])
-char_race_dropdown.grid(column=2, row=2, columnspan=2, pady=2)
-char_race_edit_button = ttk.Button(character_frame, text="...", command=None)
-char_race_edit_button.grid(column=4, row=2, pady=2)
+char_race_dropdown.grid(column=2, row=2, pady=2)
+char_race_edit_button = ttk.Button(character_frame, text="Edit", command=None)
+char_race_edit_button.grid(column=3, row=2, pady=2)
 
 
 # Dialogue Content
@@ -85,7 +85,7 @@ main_notebook.add(quest_frame, text="Quests")
 main_notebook.add(skill_frame, text="Skill Tree")
 
 main_title.pack()
-main_notebook.pack(anchor='w', expand=True, fill='both')
+main_notebook.pack(expand=True, fill='both')
 main_version.pack(anchor='e')
 
 window_main.config(menu=menu_main)
