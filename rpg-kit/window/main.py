@@ -28,10 +28,17 @@ mn_file.add_command(label="Exit", command=quit_application)
 main_title = tk.Label(window_main, text="LEONIS RPG KIT")
 main_notebook = ttk.Notebook(window_main)
 main_version = ttk.Label(window_main, text="MVP Build")
+
+# Window themes
+default_theme = ttk.Style()
+default_theme.configure('Char.TFrame', background='red')
+default_theme.configure('World.TFrame', background='green')
+default_theme.configure('Dialogue.TFrame', background='blue')
+
 # Character Content
-world_frame = ttk.Frame(main_notebook)
-character_frame = ttk.Frame(main_notebook)
-dialogue_frame = ttk.Frame(main_notebook)
+world_frame = ttk.Frame(main_notebook, style='Char.TFrame')
+character_frame = ttk.Frame(main_notebook, style='World.TFrame')
+dialogue_frame = ttk.Frame(main_notebook, style='Dialogue.TFrame')
 
 
 # Adding all tabs to main Notebook
