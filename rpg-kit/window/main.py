@@ -34,17 +34,26 @@ default_theme = ttk.Style()
 default_theme.configure('Char.TFrame', background='red')
 default_theme.configure('World.TFrame', background='green')
 default_theme.configure('Dialogue.TFrame', background='blue')
+default_theme.configure('Quest.TFrame', background="purple")
+
+# World Content
+world_frame = ttk.Frame(main_notebook, style='Char.TFrame')
 
 # Character Content
-world_frame = ttk.Frame(main_notebook, style='Char.TFrame')
 character_frame = ttk.Frame(main_notebook, style='World.TFrame')
+
+# Dialogue Content
 dialogue_frame = ttk.Frame(main_notebook, style='Dialogue.TFrame')
+
+# Quest Content
+quest_frame = ttk.Frame(main_notebook, style='Quest.TFrame')
 
 
 # Adding all tabs to main Notebook
 main_notebook.add(world_frame, text="World")
 main_notebook.add(character_frame, text="Characters")
 main_notebook.add(dialogue_frame, text="Dialogue")
+main_notebook.add(quest_frame, text="Quests")
 
 main_title.pack()
 main_notebook.pack(anchor='w', expand=True, fill='both')
