@@ -17,8 +17,9 @@ menu_main = tk.Menu(window_main)
 
 mn_file = tk.Menu(menu_main, tearoff=0)
 menu_main.add_cascade(label="File", menu = mn_file)
-mn_file.add_command(label="New File", command=None)
-mn_file.add_command(label="Save File", command=None)
+mn_file.add_command(label="New Universe", command=None)
+mn_file.add_command(label="Load Universe")
+mn_file.add_command(label="Save Universe", command=None)
 mn_file.add_separator()
 mn_file.add_command(label="Import", command=None)
 mn_file.add_command(label="Export", command=None)
@@ -35,6 +36,7 @@ default_theme.configure('Char.TFrame', background='red')
 default_theme.configure('World.TFrame', background='green')
 default_theme.configure('Dialogue.TFrame', background='blue')
 default_theme.configure('Quest.TFrame', background="purple")
+default_theme.configure('Skill.TFrame', background='yellow')
 
 # World Content
 world_frame = ttk.Frame(main_notebook, style='Char.TFrame')
@@ -48,12 +50,16 @@ dialogue_frame = ttk.Frame(main_notebook, style='Dialogue.TFrame')
 # Quest Content
 quest_frame = ttk.Frame(main_notebook, style='Quest.TFrame')
 
+# Skill Tree Content
+skill_frame = ttk.Frame(main_notebook, style='Skill.TFrame')
+
 
 # Adding all tabs to main Notebook
 main_notebook.add(world_frame, text="World")
 main_notebook.add(character_frame, text="Characters")
 main_notebook.add(dialogue_frame, text="Dialogue")
 main_notebook.add(quest_frame, text="Quests")
+main_notebook.add(skill_frame, text="Skill Tree")
 
 main_title.pack()
 main_notebook.pack(anchor='w', expand=True, fill='both')
