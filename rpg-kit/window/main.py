@@ -42,7 +42,30 @@ default_theme.configure('Skill.TFrame', background='yellow')
 world_frame = ttk.Frame(main_notebook, style='Char.TFrame')
 
 # Character Content
-character_frame = ttk.Frame(main_notebook, style='World.TFrame')
+character_frame = ttk.Frame(main_notebook)
+char_main_tree = ttk.Treeview(character_frame, selectmode='browse')
+char_main_tree["columns"] = ("ID")
+char_main_tree.heading("ID", text="Character ID")
+char_main_tree['show'] = 'headings'
+char_main_tree.grid(column=0, row=0, rowspan=50)
+
+char_id_label = ttk.Label(character_frame, text="ID")
+char_id_label.grid(column=1, row=0, pady=2, sticky='e')
+char_id_entry = ttk.Entry(character_frame)
+char_id_entry.grid(column=2, row=0, columnspan=3, pady=2, sticky='we')
+
+char_name_label = ttk.Label(character_frame, text="Name")
+char_name_label.grid(column=1, row=1, pady=2, sticky='e')
+char_name_entry = ttk.Entry(character_frame)
+char_name_entry.grid(column=2, row=1, columnspan=3, pady=2, sticky='we')
+
+char_race_label = ttk.Label(character_frame, text="Race")
+char_race_label.grid(column=1, row=2, pady=2, sticky='e')
+char_race_dropdown = ttk.Combobox(character_frame, values=['Test'])
+char_race_dropdown.grid(column=2, row=2, columnspan=2, pady=2)
+char_race_edit_button = ttk.Button(character_frame, text="...", command=None)
+char_race_edit_button.grid(column=4, row=2, pady=2)
+
 
 # Dialogue Content
 dialogue_frame = ttk.Frame(main_notebook, style='Dialogue.TFrame')
