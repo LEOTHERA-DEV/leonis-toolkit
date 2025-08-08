@@ -4,7 +4,7 @@ from tkinter import ttk, messagebox
 window_main = tk.Tk()
 
 window_main.title("RPG KIT")
-window_main.geometry("600x480")
+window_main.geometry("480x580")
 window_main.resizable(False, False)
 
 def quit_application():
@@ -45,26 +45,58 @@ world_frame = ttk.Frame(main_notebook, style='Char.TFrame')
 character_frame = ttk.Frame(main_notebook)
 char_main_tree = ttk.Treeview(character_frame, selectmode='browse')
 char_main_tree["columns"] = ("ID")
-char_main_tree.heading("ID", text="Character ID")
+char_main_tree.heading("ID", text="Characters")
 char_main_tree['show'] = 'headings'
 char_main_tree.grid(column=0, row=0, rowspan=50)
 
-char_id_label = ttk.Label(character_frame, text="ID")
+char_main_add_button = ttk.Button(character_frame, text="Add Character")
+char_main_add_button.grid(column=0, row=51, sticky='we')
+
+char_detail_frame = ttk.Labelframe(character_frame, text="Information")
+char_detail_frame.grid(column=1, row=0, pady=2, columnspan=4)
+
+char_id_label = ttk.Label(char_detail_frame, text="ID")
 char_id_label.grid(column=1, row=0, pady=2, sticky='e')
-char_id_entry = ttk.Entry(character_frame)
-char_id_entry.grid(column=2, row=0, columnspan=2, pady=2, sticky='we')
+char_id_entry = ttk.Entry(char_detail_frame)
+char_id_entry.grid(column=2, row=0, columnspan=3, pady=2, sticky='we')
 
-char_name_label = ttk.Label(character_frame, text="Name")
+char_name_label = ttk.Label(char_detail_frame, text="Name")
 char_name_label.grid(column=1, row=1, pady=2, sticky='e')
-char_name_entry = ttk.Entry(character_frame)
-char_name_entry.grid(column=2, row=1, columnspan=2, pady=2, sticky='we')
+char_name_entry = ttk.Entry(char_detail_frame)
+char_name_entry.grid(column=2, row=1, columnspan=3, pady=2, sticky='we')
 
-char_race_label = ttk.Label(character_frame, text="Race")
+char_race_label = ttk.Label(char_detail_frame, text="Race")
 char_race_label.grid(column=1, row=2, pady=2, sticky='e')
-char_race_dropdown = ttk.Combobox(character_frame, values=['Test'])
-char_race_dropdown.grid(column=2, row=2, pady=2)
-char_race_edit_button = ttk.Button(character_frame, text="Edit", command=None)
-char_race_edit_button.grid(column=3, row=2, pady=2)
+char_race_entry = ttk.Entry(char_detail_frame)
+char_race_entry.grid(column=2, row=2, columnspan=3, pady=2, sticky='we')
+
+char_hp_label = ttk.Label(char_detail_frame, text="Hit Points")
+char_hp_label.grid(column=1, row=3, pady=2, sticky='e')
+char_hp_entry = ttk.Scale(char_detail_frame, orient='horizontal')
+char_hp_entry.grid(column=2, row=3, columnspan=3, pady=2, sticky='we')
+
+char_stats_frame = ttk.Labelframe(character_frame, text="Stats")
+char_stats_frame.grid(column=1, row=4, columnspan=4, pady=2)
+
+char_stats_atk_label = ttk.Label(char_stats_frame, text="Strength")
+char_stats_atk_label.grid(column=1, row=5, sticky='e')
+char_stats_atk_value = ttk.Spinbox(char_stats_frame, width=5)
+char_stats_atk_value.grid(column=2, row=5)
+
+char_stats_dex_label = ttk.Label(char_stats_frame, text="Dexterity")
+char_stats_dex_label.grid(column=3, row=5, sticky='e')
+char_stats_dex_value = ttk.Spinbox(char_stats_frame, width=5)
+char_stats_dex_value.grid(column=4, row=5)
+
+char_stats_int_label = ttk.Label(char_stats_frame, text="Intelligence")
+char_stats_int_label.grid(column=1, row=6, sticky='e')
+char_stats_int_value = ttk.Spinbox(char_stats_frame, width=5)
+char_stats_int_value.grid(column=2, row=6)
+
+char_stats_wis_label = ttk.Label(char_stats_frame, text="Wisdom")
+char_stats_wis_label.grid(column=3, row=6, sticky='e')
+char_stats_wis_value = ttk.Spinbox(char_stats_frame, width=5)
+char_stats_wis_value.grid(column=4, row=6)
 
 
 # Dialogue Content
