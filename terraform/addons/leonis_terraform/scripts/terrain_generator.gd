@@ -194,9 +194,13 @@ func _config_lod_0():
 	
 	_terrain_lod_0.visibility_range_end = cell_size/2 + cell_size/4
 	_terrain_lod_0.mesh = _terrain_lod_0_mesh
+	_terrain_lod_0.set_layer_mask_value(2, true)
 	_terrain_lod_0.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED
 	if enable_collision:
 		_terrain_lod_0.create_trimesh_collision()
+		var _collider : StaticBody3D = _terrain_lod_0.get_node("TerrainCellLOD0_col")
+		_collider.set_collision_mask_value(2, true)
+		_collider.set_collision_layer_value(2, true)
 	_terrain_lod_0.material_override = _terrain_material
 	_terrain_static_body = _terrain_lod_0.get_child(0)
 
@@ -247,6 +251,7 @@ func _configure_terrain_brush():
 	_brush_decal.texture_albedo = preload("res://addons/leonis_terraform/resources/terrain_brush.png")
 	_brush_decal.modulate = Color(1, 1, 1, 0.8)
 	_brush_decal.size = Vector3(_brush_radius*10, 20, _brush_radius*10)
+	_brush_decal.cull_mask = 2
 	_brush_decal.name = "terrainBrush"
 
 func setTerrainBrushRadius(new_radius : int):

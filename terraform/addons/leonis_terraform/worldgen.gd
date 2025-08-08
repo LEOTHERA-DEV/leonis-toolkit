@@ -127,7 +127,7 @@ func _handle_gui_paint(viewport_camera: Camera3D, event: InputEvent, draw) -> vo
 	var from = viewport_camera.project_ray_origin(event.position)
 	var to = from + viewport_camera.project_ray_normal(event.position) * 1000
 	var sp_state = get_tree().get_root().world_3d.direct_space_state
-	var params := PhysicsRayQueryParameters3D.create(from, to)
+	var params := PhysicsRayQueryParameters3D.create(from, to, 2)
 	var result = sp_state.intersect_ray(params)
 	
 	if result:
