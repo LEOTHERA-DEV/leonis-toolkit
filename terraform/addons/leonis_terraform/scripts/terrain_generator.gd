@@ -19,6 +19,8 @@ var subdivision_steps : int
 @export var scatter_map : Texture2D
 
 # Terrain Meshes for exporting
+var lod_0_root : NavigationRegion3D
+var _nav_mesh : NavigationMesh
 var _terrain_lod_0_mesh : Mesh
 var _terrain_lod_1_mesh : Mesh
 var _terrain_lod_2_mesh : Mesh
@@ -85,7 +87,7 @@ func generate_collider():
 	print("TODO")
 	
 func _add_children():
-	var lod_0_root = StaticBody3D.new()
+	lod_0_root = NavigationRegion3D.new()
 	lod_0_root.add_child(_terrain_lod_0)
 	add_child(lod_0_root)
 	lod_0_root.owner = self
@@ -95,6 +97,16 @@ func _add_children():
 	_terrain_lod_2.owner = self
 	add_child(_terrain_lod_3)
 	_terrain_lod_3.owner = self
+
+func generateNavigationMesh():
+	if lod_0_root.navigation_mesh != null:
+		lod_0_root.navigation_mesh.clear()
+	_nav_mesh = NavigationMesh.new()
+	_nav_mesh.agent_max_slope = 60
+	_nav_mesh.cell_size = 0.5 * (cell_size / 512)
+	_nav_mesh.cell_height = 0.25
+	lod_0_root.navigation_mesh = _nav_mesh
+	lod_0_root.bake_navigation_mesh()
 
 func _updateSplatMaps():
 	var _splats = {
