@@ -44,6 +44,7 @@ func _enter_tree():
 	_terraingen_pop.add_item("Update Terrain Material", 2)
 	_terraingen_pop.add_item("Set Collision Shape", 3)
 	_terraingen_pop.add_item("Export Mesh", 4)
+	_terraingen_pop.add_item("Bake Navigation Mesh", 5)
 	
 	var _splatedit_pop = _splatedit_menu_controls.get_popup()
 	_splatedit_pop.add_item("Splat 0", 0)
@@ -127,7 +128,7 @@ func _handle_gui_paint(viewport_camera: Camera3D, event: InputEvent, draw) -> vo
 	var from = viewport_camera.project_ray_origin(event.position)
 	var to = from + viewport_camera.project_ray_normal(event.position) * 1000
 	var sp_state = get_tree().get_root().world_3d.direct_space_state
-	var params := PhysicsRayQueryParameters3D.create(from, to)
+	var params := PhysicsRayQueryParameters3D.create(from, to, 2)
 	var result = sp_state.intersect_ray(params)
 	
 	if result:
@@ -156,6 +157,9 @@ func _on_terrain_option_pressed(id : int):
 		4:
 			if _obj and _obj.has_method("export_terrain_mesh"):
 				_obj.call("export_terrain_mesh")
+		5:
+			if _obj and _obj.has_method("generateNavigationMesh"):
+				_obj.call("generateNavigationMesh")
 
 func _edit(object : Object):
 	_remove_controls()
